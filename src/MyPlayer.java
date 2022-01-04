@@ -12,7 +12,7 @@ public class MyPlayer {
 
 
     public MyPlayer() {
-        columns = new int[3];
+        columns = new int[10];
 
 
     }
@@ -28,10 +28,10 @@ public class MyPlayer {
         int column = 0;
         int row = 0;
 
-        Arrays.fill(columns,0);
+        Arrays.fill(columns, 0);
 
-        for(int x=0; x<3; x++){
-            for(int y=0; y<3; y++){
+        for(int x=0; x<10; x++){//change these to width length
+            for(int y=0; y<10; y++){
                 if(gameBoard[x][y].isAlive==true){
                     columns[x]++;
                 }
@@ -39,7 +39,7 @@ public class MyPlayer {
         }
         System.out.print(Arrays.toString(columns));
 
-        for (int i=0; i<3; i++){
+        for (int i=0; i<10; i++){
             for (int j=0; j<=columns[i]; j++){
                 int[]dummyboard = columns.clone();
                 for (int k=i; k<columns.length;k++){
@@ -47,18 +47,17 @@ public class MyPlayer {
                         dummyboard[k]=j;
                     }
                 }
-                for(int[]m : Board.losingboards){
+                for(int[]m : Board.currentlosingboards){
                     if(Arrays.equals(m,dummyboard) == true){
-                        row = i-1;
-                        column = j-1;
-                        System.out.println(row + "" + column);
+                        row = i;
+                        column = j;
                     }
                 }
             }
         }
 
 
-
+        System.out.println(row + "" + column);
         Point myMove = new Point(row, column);
         return myMove;
     }

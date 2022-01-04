@@ -57,7 +57,7 @@ public class Chomp implements Runnable, MouseListener {
     // Main method definition
     // This is the code that runs first and automatically
     public static void main(String[] args) {
-        Board.Initialize(3,3);    //INITIALIZE BOARD
+        Board.Initialize(10,10);    //INITIALIZE BOARD
         Chomp myApp = new Chomp();   //creates a new instance of the game
         new Thread(myApp).start();  //creates a threads & starts up the code in the run( ) method
     }
