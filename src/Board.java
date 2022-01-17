@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 //use new data structure (hashset)
 
 public class Board {
     static ArrayList<int[]> boards = new ArrayList<int[]>();
-    static ArrayList<int[]> winningboards = new ArrayList<>();
+    static ArrayList<int[]> winningboards = new ArrayList<>();//make it hashset instead of arraylist uses longs
     static ArrayList<int[]> losingboards = new ArrayList<>();
     static ArrayList<int[]> currentlosingboards = new ArrayList<>();
     static int[] placeholder = new int[10];//change here for width
@@ -73,7 +74,7 @@ public class Board {
 
 
 
-    //winning function
+    //losing boards function
     static boolean checkLosingPos(int[]currentboard) {
         int[] emptyarray = new int[currentboard.length];
         for(int i=0; i<currentboard.length;i++){
@@ -86,12 +87,12 @@ public class Board {
                 }
                 int counter = 0;
                 for(int[] m : winningboards){
-                    if(Arrays.equals(copyboard, m) == true){
+                    if(Arrays.equals(copyboard, m) == true){//Arrays.equals(copyboard, m) == true
                         counter++;
                         break;
                     }
                 }
-                if(Arrays.equals(copyboard, emptyarray) == true){
+                if(Arrays.equals(copyboard, emptyarray) == true){//Arrays.equals(copyboard, emptyarray) == true
                     counter++;
                 }
                 if(counter == 0){
@@ -129,21 +130,6 @@ public class Board {
         }
 
         return (true);
-    }
-
-    //
-    public static void InsertBoard(ArrayList<int[]> boardSet, int[] set1)
-    {
-        boolean add = true;
-        for (int[] i : boardSet) {
-            if (Arrays.equals(i, set1) == true) {
-                add = false;
-                break;
-            }
-        }
-        if (add == true) {
-            boardSet.add(set1);
-        }
     }
 
     public static void PrintSet(ArrayList<int[]> boardSet)
