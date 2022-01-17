@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class Board {
     static ArrayList<int[]> boards = new ArrayList<int[]>();
-    static ArrayList<int[]> winningboards = new ArrayList<>();//make it hashset instead of arraylist uses longs
+    static HashSet<Double> winningboardshash = new HashSet<>();
     static ArrayList<int[]> losingboards = new ArrayList<>();
     static ArrayList<int[]> currentlosingboards = new ArrayList<>();
     static int[] placeholder = new int[10];//change here for width
@@ -42,13 +42,15 @@ public class Board {
                     }
                 }
                 if (p == 1) {
-                    winningboards.add(copiedarray);
+                    winningboardshash.add(hash(copiedarray));
                     boards.remove(j);
                 }
                 else {
                     j++;
                 }
             }
+
+            System.out.println(boards.size());
 
 
             //find losing and insert/remove
@@ -86,11 +88,8 @@ public class Board {
                     }
                 }
                 int counter = 0;
-                for(int[] m : winningboards){
-                    if(Arrays.equals(copyboard, m) == true){//Arrays.equals(copyboard, m) == true
-                        counter++;
-                        break;
-                    }
+                if(winningboardshash.contains(hash(copyboard))){
+                    counter++;
                 }
                 if(Arrays.equals(copyboard, emptyarray) == true){//Arrays.equals(copyboard, emptyarray) == true
                     counter++;
@@ -131,6 +130,13 @@ public class Board {
 
         return (true);
     }
+    public static double hash(int[] array){
+        double hashcode = 0;
+        for(int i=0;i<array.length;i++){
+            hashcode=hashcode+array[i]*Math.pow(11, i);
+        }
+        return hashcode;
+    }
 
     public static void PrintSet(ArrayList<int[]> boardSet)
     {
@@ -150,11 +156,9 @@ public class Board {
             allboardstates(start + 1, i);
         }
     }
-    //public static void main (String[] args){
-    //    int[] a = {2,2,0};
-    //    int[] b = {1,0,0};
-    //    System.out.print(OneMove(a,b));
-    //}
+    public static void main (String[] args){
+
+    }
     }
 
 
